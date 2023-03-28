@@ -1,0 +1,10 @@
+.black-nav{
+  display: flex;
+  background: black;
+  width: 100%;
+  color: white;
+  padding-left: 20px;
+}
+.post-title{
+  text-align: center;
+}
