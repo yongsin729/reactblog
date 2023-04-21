@@ -7,8 +7,9 @@ function App() {
 
   let post='강남 우동 맛집';
   let [글제목, 글제목변경]=useState(['남자 코드 추천','여자 코트 추천','가제목 ']);
-  let [like,setLike]=useState(0);
+  let [like,setLike]=useState([0,0,0]);
   let [modal,setModal]=useState(false);
+  let [sortButton,setSortButton]=useState(true);
   return (
     <div className="App">
       <div className="black-nav">
@@ -23,8 +24,10 @@ function App() {
           return(
             <div className='list'>
         <h4 >{글제목[i]}<span onClick={()=>{
-          setLike(like+1);
-        }}>👍</span> {like} </h4>
+          let copy=[...like];
+          copy[i]=copy[i]+1;
+          setLike(copy)
+        }}>👍</span> {like[i]} </h4>
         <p>2월 17일 발행</p>
       </div>
           )
@@ -32,7 +35,10 @@ function App() {
       }
       <button onClick={()=>{
         let copy=[...글제목];
-        copy.sort();/* 반대는 reverse() */
+        {
+          sortButton==true?copy.sort():(copy.reverse())
+        }
+        // copy.sort();/* 반대는 reverse() */
         글제목변경(copy);
       }}>버튼</button>
       {/* <button onClick={()=>{
