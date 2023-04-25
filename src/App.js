@@ -10,6 +10,7 @@ function App() {
   let [like,setLike]=useState([0,0,0]);
   let [modal,setModal]=useState(false);
   let [sortButton,setSortButton]=useState(true);
+  let [title,setTitle]=useState(0);
   return (
     <div className="App">
       <div className="black-nav">
@@ -23,7 +24,10 @@ function App() {
         글제목.map(function(a,i){
           return(
             <div className='list'>
-        <h4 >{글제목[i]}<span onClick={()=>{
+        <h4 ><span onClick={()=>{
+         setModal(!modal)
+         setTitle(i)
+        }}>{글제목[i]}</span><span onClick={()=>{
           let copy=[...like];
           copy[i]=copy[i]+1;
           setLike(copy)
@@ -33,6 +37,9 @@ function App() {
           )
         })
       }
+       {
+      modal==true?  <Modal 글제목={글제목} title={title}></Modal>:null
+    }
       <button onClick={()=>{
         let copy=[...글제목];
         {
@@ -48,17 +55,18 @@ function App() {
       }}>버튼</button> */}
       {/* onClick={()=>{
           setModal(!modal)// modal==false?setModal(true):setModal(false) 같은 의미 */}
-       {
-      modal==true?  <Modal></Modal>:null
-    }
+      
     </div>
   );
 }
 
-function Modal(){
+// //props로 부모-> 자식 state전송하는법
+// 1. 자식 컴포넌트 사용하는 곳에 가서<자식컴포넌트 작명={state이름}/>
+// 2. 자식컴포넌트 만드는 function으로 가서 props 라는 파라미터 등록 후 props.작명 사용
+function Modal(props){
   return(
     <div className='modal'>
-      <h4>제목</h4>
+      <h4>{props.글제목[props.title]}</h4>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
