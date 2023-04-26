@@ -38,7 +38,7 @@ function App() {
         })
       }
        {
-      modal==true?  <Modal 글제목={글제목} title={title}></Modal>:null
+      modal==true?  <Modal 글제목={글제목} title={title} like={like}></Modal>:null
     }
       <button onClick={()=>{
         let copy=[...글제목];
@@ -66,7 +66,7 @@ function App() {
 function Modal(props){
   return(
     <div className='modal'>
-      <h4>{props.글제목[props.title]}</h4>
+      <h4>{props.글제목[props.title]} </h4>
       <p>날짜</p>
       <p>상세내용</p>
     </div>
