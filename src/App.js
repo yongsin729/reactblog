@@ -11,6 +11,7 @@ function App() {
   let [modal,setModal]=useState(false);
   let [sortButton,setSortButton]=useState(true);
   let [title,setTitle]=useState(0);
+  let [입력값,입력값변경]=useState('');
   return (
     <div className="App">
       <div className="black-nav">
@@ -33,6 +34,11 @@ function App() {
           setLike(copy)
         }}>👍</span> {like[i]} </h4>
         <p>2월 17일 발행</p>
+        <button onClick={()=>{
+          let copy=[...글제목]
+          copy.remove(i);
+          글제목변경(copy);
+        }}>삭제</button>
       </div>
           )
         })
@@ -47,7 +53,16 @@ function App() {
         }
         // copy.sort();/* 반대는 reverse() */
         글제목변경(copy);
-      }}>버튼</button>
+      }}>정렬</button>
+      <div className='add-blog'> 
+        <input onChange={(e)=>{
+          입력값변경(e.target.value)
+        }}/><button onClick={()=>{
+          let copy=[...글제목]
+          copy.push(입력값);
+          글제목변경(copy);
+        }}>글발행</button>
+      </div>
       {/* <button onClick={()=>{
         let copy=[...글제목];
         copy[0]='여자 코트 추천'
@@ -59,7 +74,7 @@ function App() {
     </div>
   );
 }
-
+// 이벤트 핸들러 공부, 
 // //props로 부모-> 자식 state전송하는법
 // 1. 자식 컴포넌트 사용하는 곳에 가서<자식컴포넌트 작명={state이름}/>
 // 2. 자식컴포넌트 만드는 function으로 가서 props 라는 파라미터 등록 후 props.작명 사용
