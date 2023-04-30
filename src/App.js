@@ -7,7 +7,7 @@ function App() {
 
   let post='강남 우동 맛집';
   let [글제목, 글제목변경]=useState(['남자 코드 추천','여자 코트 추천','가제목 ']);
-  let [like,setLike]=useState([0,0,0]);
+  let [like,setLike]=useState([0,0,0,0,0,0,0,0,0]);
   let [modal,setModal]=useState(false);
   let [sortButton,setSortButton]=useState(true);
   let [title,setTitle]=useState(0);
@@ -18,17 +18,17 @@ function App() {
         <h4>ReactBlog</h4>
       </div>
       {/* <h4>{post}</h4> */}
-    
-   
+      {/* {글제목.indexOf(글제목[i])}  인덱스번호 빼오기 */}
      
       {
         글제목.map(function(a,i){
           return(
+            
             <div className='list'>
-        <h4 ><span onClick={()=>{
+        <h4 >  <span onClick={()=>{
          setModal(!modal)
          setTitle(i)
-        }}>{글제목[i]}</span><span onClick={()=>{
+        }}>&nbsp;{글제목[i]}</span><span onClick={()=>{
           let copy=[...like];
           copy[i]=copy[i]+1;
           setLike(copy)
@@ -36,15 +36,16 @@ function App() {
         <p>2월 17일 발행</p>
         <button onClick={()=>{
           let copy=[...글제목]
-          copy.remove(i);
+          copy.splice(i,1);//array.splice(x,1) 원하는 x번째 자료 삭제 
           글제목변경(copy);
         }}>삭제</button>
+        
       </div>
           )
         })
       }
        {
-      modal==true?  <Modal 글제목={글제목} title={title} like={like}></Modal>:null
+      modal==true?  <Modal 글제목={글제목} title={title} like={like} index></Modal>:null
     }
       <button className='solt' onClick={()=>{
         let copy=[...글제목];
