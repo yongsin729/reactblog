@@ -11,10 +11,21 @@
 .div{
   box-sizing: border-box;
 }
+.solt{
+  margin-left: 20px;
+  top:50%;
+  background-color:#0a0a23;
+  color: #fff;
+  border:none;
+  border-radius:10px;
+  margin-bottom: 10px;
+}
 .list{
   padding-left: 20px;
   text-align: left;
   border-bottom: 1px solid grey;
+  margin-bottom: 10px;
+  padding-bottom: 20px;
 }
 .modal{
   margin-top: 20px;

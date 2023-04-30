@@ -46,7 +46,7 @@ function App() {
        {
       modal==true?  <Modal 글제목={글제목} title={title} like={like}></Modal>:null
     }
-      <button onClick={()=>{
+      <button className='solt' onClick={()=>{
         let copy=[...글제목];
         {
           sortButton==true?copy.sort():(copy.reverse())
