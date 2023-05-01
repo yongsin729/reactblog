@@ -3,6 +3,9 @@ import logo from './logo.svg';
 import './App.css';
 import { useState } from 'react';
 
+var now=new Date();
+  var month=now.getMonth();
+  var day=now.getDate();;
 function App() {
 
   let post='강남 우동 맛집';
@@ -33,7 +36,7 @@ function App() {
           copy[i]=copy[i]+1;
           setLike(copy)
         }}>👍</span> {like[i]} </h4>
-        <p>2월 17일 발행</p>
+        <p>{month+1}월 {day}일 발행</p>
         <button onClick={()=>{
           let copy=[...글제목]
           copy.splice(i,1);//array.splice(x,1) 원하는 x번째 자료 삭제 
@@ -61,7 +64,11 @@ function App() {
         }}/><button onClick={()=>{
           let copy=[...글제목]
           copy.push(입력값);
-          글제목변경(copy);
+          let last=copy[copy.length-1];
+          console.log(last);
+          {
+              last!==""?글제목변경(copy):null// 공백일경우 입력막기
+          }
         }}>글발행</button>
       </div>
       {/* <button onClick={()=>{
@@ -80,10 +87,11 @@ function App() {
 // 1. 자식 컴포넌트 사용하는 곳에 가서<자식컴포넌트 작명={state이름}/>
 // 2. 자식컴포넌트 만드는 function으로 가서 props 라는 파라미터 등록 후 props.작명 사용
 function Modal(props){
+  
   return(
     <div className='modal'>
       <h4>{props.글제목[props.title]} </h4>
-      <p>날짜</p>
+      <p>{month+1}월 {day}일 발행</p>
       <p>상세내용</p>
     </div>
   )
